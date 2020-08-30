@@ -1,0 +1,21 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.x'
+          architecture: 'x64'
+      - name: Show python version
+        run: python --version
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y softhsm2 opensc
+          python -m pip install -r requirements.txt
+      - name: Test
+        run: ./test.sh

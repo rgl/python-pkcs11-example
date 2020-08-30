@@ -1,0 +1,2 @@
+python-pkcs11==0.7.0
+cryptography==3.1
